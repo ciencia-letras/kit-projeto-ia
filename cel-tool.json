@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "org": "ciencia-letras",
+  "copyright": "Ciência e Letras — Formação Especializada, Lda.",
+  "publisher": "Ciência e Letras",
+  "place": "Porto",
+  "community": "ciencia-letras",
+  "lab": {
+    "en": "https://ciencia-letras.github.io/#resources",
+    "pt": "https://ciencia-letras.github.io/pt/#resources"
+  },
+  "licences": {
+    "code": "MIT",
+    "content": "CC BY 4.0"
+  },
+  "authors": [
+    {
+      "given": "Ricardo",
+      "family": "Correia",
+      "affiliation": "Ciência e Letras — Formação Especializada, Lda.",
+      "orcid": "0000-0002-3764-5158"
+    }
+  ],
+  "type": "template",
+  "area": "ai",
+  "language": "PT/EN",
+  "course": {
+    "en": "Getting Started with ChatGPT and AI · GenAI for IT Professionals",
+    "pt": "Iniciação ao ChatGPT e IA · GenAI para Informáticos"
+  },
+  "courseIds": [
+    "iniciacao-chatgpt",
+    "genai-informaticos"
+  ],
+  "disclaimer": {
+    "en": "For training. Use a real or invented project, but never real personal data.",
+    "pt": "Para formação. Use um projeto real ou inventado, mas nunca dados pessoais reais."
+  },
+  "keywords": [
+    "generative AI",
+    "prompt engineering",
+    "AI literacy",
+    "public administration",
+    "project management",
+    "hallucinations",
+    "source verification",
+    "few-shot prompting",
+    "open educational resources",
+    "professional training"
+  ],
+  "doi": null,
+  "conceptDoi": null,
+  "contentScope": "texts, prompts, checklists and interface copy",
+  "slug": "kit-projeto-ia",
+  "title": {
+    "en": "My AI project in 7 phases: a practical simulation kit for generative AI",
+    "pt": "O meu projeto IA em 7 fases: kit de simulação prática com IA generativa"
+  },
+  "short": {
+    "en": "My AI project in 7 phases",
+    "pt": "O meu projeto IA em 7 fases"
+  },
+  "description": {
+    "en": "One conversation with an AI assistant takes a workplace initiative from first idea to dissemination, in seven phases. Each phase has a technique, a prompt to fill in, an iteration and a checklist. A teaching resource of the Ciência e Letras generative AI courses.",
+    "pt": "Uma conversa com um assistente de IA leva uma iniciativa de trabalho da primeira ideia à divulgação, em sete fases. Cada fase tem uma técnica, um prompt para preencher, uma iteração e uma checklist. Um recurso pedagógico dos cursos de IA generativa do Ciência e Letras."
+  },
+  "released": "2026-11-12"
+}

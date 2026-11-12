@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<title>O meu projeto IA em 7 fases — kit completo · Ciência e Letras</title>
+<!-- Fonte do PDF do kit completo. Gerar com: python3 _pdf/build_pdf.py  →  dist/kit-projeto-ia-7-fases.pdf
+     A pasta _pdf/ começa por "_" para o GitHub Pages (Jekyll) não a publicar. O PDF não vai para o repositório. -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 17mm 20mm; }
+  @page :first { margin: 0; }
+  :root { --navy: #2F4E5E; --orange: #F79135; --oink: #B85F0E; --text: #4a4a4a; --alt: #f2f2f2; --peach: #FFE5CE; --grey: #74808D; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font: 10.2pt/1.55 "Open Sans", Calibri, Arial, sans-serif; color: var(--text); }
+  h1, h2, h3, h4, .eyebrow, .num { font-family: "Roboto Condensed", Arial, sans-serif; color: var(--navy); margin: 0; }
+  p { margin: 0 0 7pt; }
+  a { color: var(--navy); }
+  .page { break-after: page; }
+  .page:last-child { break-after: auto; }
+
+  /* capa */
+  .cover { height: 297mm; background: var(--navy); color: #fff; padding: 26mm 22mm 20mm; display: flex; flex-direction: column; position: relative; }
+  .cover img { width: 62mm; }
+  .cover .bar { width: 22mm; height: 3pt; background: var(--orange); margin: 48mm 0 8mm; }
+  .cover .eyebrow { color: var(--orange); font-size: 12pt; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+  .cover h1 { color: #fff; font-size: 42pt; line-height: 1.04; margin: 6mm 0 8mm; font-weight: 700; }
+  .cover .lead { font-size: 13pt; line-height: 1.5; color: rgba(255,255,255,.88); max-width: 140mm; }
+  .cover .steps { display: flex; gap: 3mm; margin-top: 16mm; }
+  .cover .steps span { width: 11mm; height: 11mm; border-radius: 50%; border: 1.5pt solid var(--orange); color: #fff; display: grid; place-items: center; font: 700 13pt "Roboto Condensed", Arial, sans-serif; }
+  .cover .foot { margin-top: auto; font-size: 9pt; color: rgba(255,255,255,.75); line-height: 1.5; }
+  .cover .foot strong { color: #fff; }
+
+  /* secções */
+  .eyebrow { color: var(--oink); font-size: 9.5pt; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+  h2 { font-size: 22pt; margin: 2mm 0 2mm; font-weight: 700; }
+  h2::after { content: ""; display: block; width: 14mm; height: 2.5pt; background: var(--orange); margin: 3mm 0 5mm; }
+  h3 { font-size: 13pt; margin: 6mm 0 2mm; font-weight: 700; }
+  ul { margin: 0 0 7pt; padding-left: 5mm; }
+  li { margin: 1.5pt 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 4mm 0 2mm; }
+  .feat { border-left: 5pt solid var(--orange); border-radius: 4mm; background: var(--alt); padding: 4mm 4.5mm; }
+  .feat h4 { font-size: 12pt; margin-bottom: 1.5mm; }
+  .feat p { margin: 0; font-size: 9.4pt; }
+  .note { background: var(--peach); border-radius: 3mm; padding: 3.5mm 4.5mm; margin: 4mm 0; font-size: 9.6pt; }
+  .note strong { color: var(--navy); }
+  table.map { width: 100%; border-collapse: collapse; font-size: 9.4pt; margin-top: 3mm; }
+  table.map th { background: var(--navy); color: #fff; text-align: left; padding: 2.2mm 3mm; font: 700 9pt "Roboto Condensed", Arial, sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+  table.map td { padding: 2.2mm 3mm; border-bottom: 1px solid #e2e2e2; vertical-align: top; }
+  table.map tr:nth-child(even) td { background: var(--alt); }
+  table.map td:first-child { font: 700 11pt "Roboto Condensed", Arial, sans-serif; color: var(--oink); width: 9mm; }
+
+  /* prompts */
+  .prompt { border: 1px solid #d9d9d9; border-radius: 3mm; margin: 3mm 0 4mm; break-inside: avoid; overflow: hidden; }
+  .prompt .lbl { background: var(--alt); border-bottom: 1px solid #d9d9d9; padding: 1.8mm 4mm; font: 700 8.6pt "Roboto Condensed", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+  .prompt pre { margin: 0; padding: 3mm 4mm; white-space: pre-wrap; font: 9pt/1.5 "SFMono-Regular", Menlo, Consolas, "Courier New", monospace; color: #222; }
+  .hint { font-size: 9pt; color: var(--grey); margin-top: -2mm; }
+
+  /* fases */
+  .ph-head { display: flex; align-items: center; gap: 4.5mm; margin-bottom: 3mm; }
+  .num { flex-shrink: 0; width: 14mm; height: 14mm; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-size: 20pt; font-weight: 700; }
+  .ph-head h2 { margin: 0; }
+  .ph-head h2::after { display: none; }
+  .ph-head .eyebrow { margin-bottom: 1mm; }
+  .why { font-size: 10.6pt; color: var(--navy); font-weight: 600; margin: 2mm 0 2mm; }
+  .theory { background: var(--alt); border-radius: 3mm; padding: 3mm 4.5mm 1.5mm; margin: 2mm 0 3mm; }
+  .theory h4 { font-size: 10pt; margin-bottom: 1mm; letter-spacing: .05em; text-transform: uppercase; color: var(--oink); }
+  .check { border: 1.5pt solid var(--orange); border-radius: 3mm; padding: 3mm 4.5mm; margin-top: 3mm; break-inside: avoid; }
+  .check h4 { font-size: 10.5pt; margin-bottom: 1.5mm; }
+  .check ul { list-style: none; padding: 0; margin: 0; }
+  .check li { padding-left: 6mm; position: relative; margin: 1.6mm 0; }
+  .check li::before { content: ""; position: absolute; left: 0; top: 1mm; width: 3mm; height: 3mm; border: 1.2pt solid var(--oink); border-radius: .8mm; }
+  .card-reminder { font-size: 9.2pt; color: var(--grey); margin-top: 2.5mm; }
+  .card-reminder strong { color: var(--navy); }
+  .alert { border-left: 4pt solid var(--orange); padding: 2mm 0 2mm 4mm; margin: 2mm 0 3mm; font-weight: 600; color: var(--navy); }
+
+  /* cursos */
+  .courses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 4mm 0; }
+  .course { border-radius: 4mm; border: 1px solid #e2e2e2; border-bottom: 4pt solid var(--orange); padding: 4.5mm; }
+  .course .eyebrow { font-size: 8.5pt; }
+  .course h4 { font-size: 12.5pt; margin: 1.5mm 0 2mm; }
+  .course p { font-size: 9.2pt; margin: 0 0 2mm; }
+  .course a { font-weight: 700; font-size: 9pt; text-decoration: none; border-bottom: 1.5pt solid var(--orange); }
+  .contact { background: var(--navy); color: #fff; border-radius: 4mm; padding: 6mm 7mm; margin-top: 6mm; display: flex; gap: 8mm; align-items: center; }
+  .contact img { width: 46mm; }
+  .contact p { margin: 0; font-size: 9.4pt; line-height: 1.55; }
+  .contact strong { color: var(--orange); }
+  .small { font-size: 8.6pt; color: var(--grey); }
+</style>
+</head>
+<body>
+
+<!-- ======================= CAPA ======================= -->
+<section class="page cover">
+  <img src="cel-logo-branco-horizontal.svg" alt="Ciência e Letras">
+  <div class="bar"></div>
+  <div class="eyebrow">Kit de simulação prática · IA generativa</div>
+  <h1>O meu projeto IA<br>em 7 fases</h1>
+  <p class="lead">Uma conversa com um assistente de IA, do primeiro esboço de uma iniciativa ao relatório e à divulgação. Em cada fase: uma técnica, um prompt para preencher, uma iteração e uma checklist de verificação.</p>
+  <div class="steps"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+  <div class="foot">
+    <strong>Ciência e Letras — Formação Especializada, Lda.</strong><br>
+    Autor: Ricardo Correia · Versão 1.0 · novembro de 2026<br>
+    CC BY 4.0 · ciencia-letras.github.io/kit-projeto-ia
+  </div>
+</section>
+
+<!-- ======================= COMO USAR ======================= -->
+<section class="page">
+  <div class="eyebrow">Antes de começar</div>
+  <h2>Como usar este kit</h2>
+  <p>Escolha uma iniciativa para o seu serviço, real ou inventada: um novo circuito de atendimento, um balcão digital, um plano de formação interna, um painel de indicadores. Vai levá-la da ideia à divulgação numa única conversa com a IA, sem sair dela.</p>
+  <div class="grid3">
+    <div class="feat"><h4>Uma conversa</h4><p>Abra uma conversa nova e cole o prompt inicial. A cada fase, cole o prompt seguinte na mesma conversa.</p></div>
+    <div class="feat"><h4>Um projeto</h4><p>Preencha os [ ] como quiser. No fim de cada fase, peça o cartão do projeto e guarde-o num documento seu.</p></div>
+    <div class="feat"><h4>Sete fases</h4><p>Cada fase tem a técnica, o porquê, três ideias de teoria, o prompt, uma iteração e uma checklist.</p></div>
+  </div>
+  <div class="note"><strong>Que ferramenta?</strong> A que a sua organização autoriza: Microsoft 365 Copilot Chat com proteção de dados empresarial (confirme o escudo), ChatGPT, Gemini ou Claude. O exercício é igual. Na fase 4, ligue a pesquisa web.<br>
+  <strong>Sem dados pessoais reais</strong>, em nenhuma fase. Projeto real ou fictício, mas pessoas sempre fictícias.</div>
+
+  <h3>As sete fases</h3>
+  <table class="map">
+    <tr><th></th><th>Fase</th><th>Técnica</th><th>O que produz</th></tr>
+    <tr><td>1</td><td>Ideação</td><td>Escolha múltipla + iteração</td><td>3 ideias, 1 escolhida, objetivo verificável</td></tr>
+    <tr><td>2</td><td>Pedidos de autorização</td><td>Persona-audiência</td><td>Pedidos à chefia, ao EPD e à ética; resposta a uma chefia</td></tr>
+    <tr><td>3</td><td>SWOT, recursos, orçamento, calendário</td><td>Passo a passo + tabelas</td><td>Análise em tabelas, orçamento verificado, cenário −30%</td></tr>
+    <tr><td>4</td><td>Financiamento</td><td>Pesquisa web + verificação de fontes</td><td>Fontes com link oficial, resumo da candidatura</td></tr>
+    <tr><td>5</td><td>Dados fictícios</td><td>Few-shot (exemplos)</td><td>CSV de 6 meses do piloto, pronto para o Excel</td></tr>
+    <tr><td>6</td><td>Relatório (opcional)</td><td>Análise de ficheiros com código</td><td>Indicadores, gráfico, relatório de 1 e de ½ página</td></tr>
+    <tr><td>7</td><td>Divulgação</td><td>Persona-audiência + formatos</td><td>Notícia, post, email, guião de slides, tradução</td></tr>
+  </table>
+  <p class="small" style="margin-top:4mm;">Tempo indicativo: cerca de 2 horas e meia para as fases 1–5 e 7. A fase 6 pode ficar para depois.</p>
+</section>
+
+<!-- ======================= PROMPT INICIAL + CARTÃO ======================= -->
+<section class="page">
+  <div class="eyebrow">Arranque</div>
+  <h2>Prompt inicial e cartão do projeto</h2>
+  <p>Um bom prompt separa três coisas. <strong>Contexto</strong>: o que o modelo precisa de saber para não adivinhar. <strong>Papel</strong>: a lente de análise, com domínio e critérios de qualidade. <strong>Expectativa</strong>: a tarefa, o formato e o que fazer perante lacunas. No fim, a interação invertida: a IA pergunta antes de produzir.</p>
+  <div class="prompt"><div class="lbl">Prompt inicial · copie, preencha os [ ] e cole numa conversa nova</div>
+<pre>Quero propor uma nova iniciativa no meu [serviço / departamento / unidade] da [organização], em torno de [atendimento ao público / gestão documental / tratamento de reclamações / formação interna / ...].
+A minha função atual é [técnico superior / assistente técnico / dirigente / docente / ...].
+Atua como especialista na implementação deste tipo de iniciativas em [setor: administração pública / ensino superior / empresa / IPSS] em Portugal.
+Vou produzir vários documentos e recursos de forma faseada. Eu digo-te qual é a fase seguinte.
+Regras para toda a conversa:
+- português europeu, tom institucional, respostas concisas;
+- não inventes regulamentos, nomes, valores ou programas: assinala [a confirmar];
+- não uses dados pessoais reais.
+Antes de começarmos, faz-me até 5 perguntas para perceberes o contexto. Uma de cada vez.</pre></div>
+
+  <h3>No fim de cada fase: o cartão do projeto</h3>
+  <div class="prompt"><div class="lbl">Cartão do projeto</div>
+<pre>Atualiza o CARTÃO DO PROJETO (máximo 150 palavras):
+título · objetivo · unidade e função · decisões tomadas · números-chave · próximos passos · pendentes [a confirmar].</pre></div>
+  <p class="hint">Copie o cartão para um documento seu. Leva o essencial, sem o ruído da conversa.</p>
+
+  <h3>Se precisar de recomeçar num chat novo</h3>
+  <div class="prompt"><div class="lbl">Recomeçar</div>
+<pre>Estou a trabalhar numa iniciativa e vou colar o cartão do projeto.
+Lê-o e confirma em 3 linhas o que percebeste. Depois aguarda a fase seguinte.
+Mantém as regras: PT-PT, tom institucional, não inventar, assinalar [a confirmar].
+[cola aqui o cartão]</pre></div>
+  <p class="hint">Se a conversa ficar lenta ou atingir o limite. Gerir o contexto também é uma técnica.</p>
+</section>
+
+<!-- ======================= FASE 1 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">1</div><div><div class="eyebrow">Escolha múltipla + iteração</div><h2>Ideação do projeto</h2></div></div>
+  <p class="why">Pedir opções em vez de uma resposta única evita ficar preso à primeira ideia. Depois, itera-se.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Peça 3 opções contrastantes e não deixe a IA escolher por si.</li>
+    <li>Escolha uma e refine-a com uma instrução concreta («só muda X»).</li>
+    <li>Feche com um objetivo verificável: o que muda, para quem, até quando.</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 1 · prompt</div>
+<pre>FASE 1 · IDEAÇÃO
+Apresenta-me 3 ideias diferentes para esta iniciativa:
+A. ambiciosa; B. de baixo custo; C. testável num mês.
+Para cada uma: nome curto · problema que resolve · como funciona (3 frases) · quem beneficia · principal risco.
+Não escolhas por mim.</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Escolho a [A/B/C]. Ajusta-a a esta restrição: [ex.: sem orçamento novo / só 2 pessoas].
+Formula: título institucional · objetivo numa frase (o que muda, para quem, até quando) · 3 benefícios mensuráveis.</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>As 3 ideias são mesmo diferentes entre si?</li>
+    <li>O objetivo é verificável (tem número e prazo)?</li>
+    <li>A IA inventou algum serviço, programa ou regulamento da sua organização?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 2 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">2</div><div><div class="eyebrow">Persona-audiência</div><h2>Pedidos de autorização</h2></div></div>
+  <p class="why">O mesmo projeto explica-se de forma diferente a quem decide, a quem protege os dados e a quem avalia a ética.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Defina o destinatário: cargo, o que valoriza, o que receia, que decisão tem de tomar.</li>
+    <li>Mude o tom, a extensão e os argumentos. Não mude os factos.</li>
+    <li>RGPD e Regulamento da IA: a IA ajuda a preparar as perguntas, não substitui o parecer do encarregado de proteção de dados.</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 2 · prompt</div>
+<pre>FASE 2 · PEDIDOS DE AUTORIZAÇÃO
+Redige 3 versões do pedido, uma por destinatário, adaptando tom, extensão e argumentos:
+1. [chefia direta / direção da unidade] — ofício formal: benefícios, recursos, prazo; máximo 1 página.
+2. Encarregado de Proteção de Dados (EPD) — que dados pessoais serão tratados, finalidade, minimização, conservação, ferramentas usadas; termina com 3 perguntas para o EPD.
+3. [comissão de ética / recursos humanos / serviço de sistemas de informação / outro: ...] — o que esta entidade precisa de saber para dar parecer.
+Não inventes artigos de lei: onde houver dúvida, escreve [a validar].</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere: a chefia respondeu</div>
+<pre>A chefia respondeu por email com dúvidas: "[cole ou invente a resposta da chefia]".
+Redige a minha resposta: cordial, institucional, máximo 150 palavras, responde a cada dúvida e propõe uma reunião de 20 minutos.</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>Os três textos mantêm os mesmos factos?</li>
+    <li>Há artigos de lei citados? Confirme-os na fonte oficial ou apague-os.</li>
+    <li>Algum dado pessoal real entrou na conversa?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 3 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">3</div><div><div class="eyebrow">Passo a passo (chain-of-thought) + formatos de saída</div><h2>SWOT, recursos, orçamento e calendário</h2></div></div>
+  <p class="why">Problemas com várias dependências pedem uma análise por etapas e uma resposta final auditável, em tabelas.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Peça «analisa passo a passo» e, na resposta, síntese, pressupostos, riscos e recomendação.</li>
+    <li>Defina o formato antes: tabelas com colunas nomeadas poupam reescrita.</li>
+    <li>Contas feitas pela IA verificam-se sempre. Peça que as confirme e confirme uma linha à mão.</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 3 · prompt</div>
+<pre>FASE 3 · ANÁLISE
+Analisa o projeto passo a passo e apresenta, em tabelas:
+1. SWOT (3–4 pontos por quadrante);
+2. Recursos necessários: item · quantidade · custo unitário · custo total · observação (usa [custo/hora de referência] = [valor]);
+3. Orçamento com subtotais e total;
+4. Calendário de 6 meses: fase · meses · entregável · responsável (por função, sem nomes).
+No fim: pressupostos usados e 3 riscos com mitigação.
+Antes de responder, confirma as somas do orçamento.</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Refaz o orçamento num cenário com 30% menos verba. O que cortas e que impacto tem no calendário?</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>As somas batem certo? Confirme uma linha à mão.</li>
+    <li>Os pressupostos são realistas para o seu serviço?</li>
+    <li>O calendário cabe no ano de trabalho do serviço (férias, picos de atividade)?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 4 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">4</div><div><div class="eyebrow">Pesquisa web + verificação de fontes</div><h2>Proposta de financiamento</h2></div></div>
+  <p class="why">É aqui que a IA mais inventa: programas, prazos e taxas plausíveis, mas falsos. Só conta o que tiver fonte oficial.</p>
+  <div class="alert">Não pergunte à IA se tem a certeza. Abra a fonte.</div>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Alucinação é informação falsa dita com confiança. Não é criatividade nem lentidão do sistema.</li>
+    <li>Ligue a pesquisa web (ou a pesquisa aprofundada) e exija o link da fonte oficial. Separe o confirmado do [não confirmado].</li>
+    <li>Abra pelo menos 2 links e confirme: o aviso existe? Está aberto? Diz o que a IA afirma?</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 4 · prompt · com pesquisa web ligada</div>
+<pre>FASE 4 · FINANCIAMENTO
+Com pesquisa web, identifica até 5 fontes de financiamento possíveis para este projeto numa [tipo de entidade: organismo público / instituição de ensino superior / empresa / IPSS] portuguesa (por exemplo: fundos próprios da organização, Portugal 2030 e programas regionais, FCT, Erasmus+, Europa Digital, Horizonte Europa, fundações, mecenato).
+Tabela: programa · entidade · elegibilidade · tipo e taxa de apoio · próximo prazo conhecido · link da fonte oficial.
+Inclui só o que confirmares numa fonte oficial; o resto marca como [não confirmado].
+Depois, para a fonte mais adequada, redige o resumo da candidatura (máximo 250 palavras).</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Para essa fonte, lista os critérios de avaliação publicados no aviso e diz como o resumo responde a cada um. Se não encontrares os critérios, diz que não os encontraste.</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>Abriu pelo menos 2 links? Existem e dizem o que a IA afirma?</li>
+    <li>Verificou na fonte, em vez de perguntar à IA «tens a certeza?»</li>
+    <li>Os prazos são futuros e o aviso está aberto? Confirme sempre na fonte oficial: os programas e as datas mudam.</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 5 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">5</div><div><div class="eyebrow">Few-shot (exemplos)</div><h2>Dados fictícios para simular o piloto</h2></div></div>
+  <p class="why">Dois exemplos bem escolhidos valem mais do que uma descrição longa: a IA copia a estrutura, o formato e o estilo.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Mostre 2 a 4 linhas de exemplo com o formato exato que quer.</li>
+    <li>Peça variação realista: meses com mais pedidos, alguns valores em falta.</li>
+    <li>Dados fictícios assinalam-se como tal. Sempre.</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 5 · prompt</div>
+<pre>FASE 5 · DADOS FICTÍCIOS
+Gera dados fictícios que simulem os primeiros 6 meses do piloto.
+Formato CSV, separador ponto e vírgula, 60 linhas, com colunas e estilo como nestes exemplos:
+data;unidade;tipo_pedido;canal;tempo_resposta_dias;estado;satisfacao_1a5
+2027-01-08;Serviço A;Reclamação;Email;4;Resolvido;4
+2027-01-09;Balcão Norte;Pedido de informação;Presencial;1;Resolvido;5
+Adapta as colunas ao meu projeto. Inclui variação realista (meses com mais pedidos, 2–3 valores em falta).
+Nenhum nome de pessoa. Indica antes da tabela que os dados são fictícios.</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Dá-me os dados como ficheiro .csv para descarregar.</pre></div>
+  <p class="hint">Se o descarregamento falhar: copie a tabela para o Excel → Dados → Texto para Colunas → separador ponto e vírgula.</p>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>Abriu no Excel? As colunas separam bem?</li>
+    <li>Os valores fazem sentido (sem datas impossíveis, notas fora de 1–5)?</li>
+    <li>Ficou claro que os dados são fictícios?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 6 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">6</div><div><div class="eyebrow">Análise de ficheiros + iteração · opcional</div><h2>Relatório de acompanhamento</h2></div></div>
+  <p class="why">A IA analisa folhas de cálculo, desde que faça as contas com código e mostre a tabela que usou.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Anexe o ficheiro e peça os cálculos «com código».</li>
+    <li>Peça indicadores com valor e variação, e as limitações dos dados.</li>
+    <li>Itere para cada público: dirigente (meia página), equipa (detalhe).</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 6 · prompt</div>
+<pre>FASE 6 · RELATÓRIO
+Com base nos dados (anexo o CSV / usa os que geraste), produz um relatório de acompanhamento para [a chefia / a direção]:
+1. 5 indicadores-chave com valor e variação mensal (faz as contas com código e mostra a tabela usada);
+2. 1 gráfico de evolução mensal;
+3. 3 conclusões e 2 recomendações;
+4. limitações dos dados.
+Máximo 1 página.</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Reduz para meia página, para a direção de topo. Coloca a recomendação principal na primeira frase.</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>Confirme um indicador no Excel (por exemplo, a média do tempo de resposta).</li>
+    <li>As conclusões decorrem dos números ou são opinião?</li>
+    <li>O relatório diz que os dados são fictícios?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FASE 7 ======================= -->
+<section class="page">
+  <div class="ph-head"><div class="num">7</div><div><div class="eyebrow">Persona-audiência + formatos</div><h2>Conteúdos de divulgação</h2></div></div>
+  <p class="why">Com resultados, chega a hora de os comunicar: o mesmo conteúdo, quatro formatos, quatro públicos.</p>
+  <div class="theory"><h4>Três ideias</h4><ul>
+    <li>Para cada peça, defina público, canal, extensão e tom.</li>
+    <li>Peça variantes e escolha; itere só o que precisa.</li>
+    <li>Transparência: indique que o texto teve apoio de IA, sobretudo quando é público (ver o art. 50.º do Regulamento da IA).</li></ul></div>
+  <div class="prompt"><div class="lbl">Fase 7 · prompt</div>
+<pre>FASE 7 · DIVULGAÇÃO
+Cria os materiais de divulgação, cada um adaptado ao seu público:
+1. notícia para a newsletter interna da [organização] (150 palavras);
+2. post para o LinkedIn institucional (80 palavras, 3 hashtags);
+3. email aos colegas do serviço a convidar para o piloto (tom próximo, 120 palavras);
+4. guião de 5 slides para apresentar à direção (título + 3 tópicos por slide).
+Onde se aplique, indica que o texto foi preparado com apoio de IA.</pre></div>
+  <div class="prompt"><div class="lbl">Depois · itere</div>
+<pre>Traduz a notícia para inglês, para o site em inglês da [organização]. Mantém o registo institucional e assinala termos sem equivalente direto.</pre></div>
+  <div class="check"><h4>Verifique antes de avançar</h4><ul>
+    <li>Os números citados vêm da fase 3 ou 5 (e são fictícios)?</li>
+    <li>O tom de cada peça serve o seu público?</li>
+    <li>Está indicado o apoio de IA onde o texto é público?</li></ul></div>
+  <p class="card-reminder">No fim: peça o <strong>cartão do projeto</strong>.</p>
+</section>
+
+<!-- ======================= FECHO ======================= -->
+<section class="page">
+  <div class="eyebrow">Fecho · de conversa a assistente</div>
+  <h2>Transforme a conversa num assistente do seu serviço</h2>
+  <p>As instruções que funcionaram nesta conversa podem servir de ponto de partida da próxima. Cole o resultado num Project (Claude ou ChatGPT), num GPT, num Gem (Gemini) ou num agente do Copilot. Na próxima vez, não começa do zero.</p>
+  <div class="prompt"><div class="lbl">Assistente reutilizável</div>
+<pre>Transforma esta conversa num assistente reutilizável para gerir esta iniciativa nos próximos meses.
+Escreve as instruções para um Project / GPT / Gem / Agente do Copilot com:
+(1) objetivo do assistente; (2) informação que deve pedir antes de começar; (3) passos que segue;
+(4) formatos de saída; (5) o que nunca deve fazer.
+Máximo 250 palavras. Inclui no fim o cartão do projeto atual.</pre></div>
+  <div class="check"><h4>Verifique antes de o usar</h4><ul>
+    <li>As instruções repetem as regras: não inventar, assinalar [a confirmar], sem dados pessoais reais?</li>
+    <li>Diz o que o assistente nunca deve fazer?</li>
+    <li>O cartão do projeto no fim está atualizado?</li></ul></div>
+
+  <h3>Para refletir, em três frases</h3>
+  <div class="prompt"><div class="lbl">Balanço</div>
+<pre>1. O meu projeto chama-se [título] e quer [objetivo numa frase].
+2. A fase em que a IA mais me ajudou foi [fase], e onde tive de corrigir foi [fase], porque [razão].
+3. Amanhã, no meu serviço, vou experimentar [ação concreta].</pre></div>
+</section>
+
+<!-- ======================= CURSOS E CONTACTOS ======================= -->
+<section class="page">
+  <div class="eyebrow">Continuar a aprender</div>
+  <h2>Cursos do Ciência e Letras</h2>
+  <p>As técnicas deste kit são trabalhadas, com prática acompanhada, nos cursos de IA generativa do Ciência e Letras, entidade formadora certificada pela DGERT.</p>
+  <div class="courses">
+    <div class="course"><div class="eyebrow">Curso</div><h4>Iniciação ao ChatGPT e IA</h4>
+      <p>Prompts bem estruturados, verificação de respostas e uso responsável no trabalho.</p>
+      <a href="https://www.ciencia-letras.pt/cursos/iniciacao-chatgpt-ia/">ciencia-letras.pt/cursos</a></div>
+    <div class="course"><div class="eyebrow">Curso</div><h4>GenAI para Informáticos</h4>
+      <p>Assistentes, automação, análise de dados e integração da IA nos sistemas.</p>
+      <a href="https://www.ciencia-letras.pt/cursos/genai-para-informaticos/">ciencia-letras.pt/cursos</a></div>
+    <div class="course"><div class="eyebrow">Para equipas</div><h4>Workshop ou diagnóstico</h4>
+      <p>Esta simulação adaptada aos projetos do seu serviço, numa manhã, ou um diagnóstico da literacia em IA da equipa.</p>
+      <a href="mailto:secretaria@ciencia-letras.pt">secretaria@ciencia-letras.pt</a></div>
+  </div>
+
+  <h3>Usar e citar</h3>
+  <p>Pode usar, adaptar e partilhar este kit, incluindo em formação, ao abrigo da licença CC BY 4.0, desde que cite a fonte:</p>
+  <p style="padding-left:4mm;border-left:3pt solid var(--orange);">Correia, R. (2026). <em>My AI project in 7 phases: a practical simulation kit for generative AI</em> (Versão 1.0.0). Ciência e Letras. https://ciencia-letras.github.io/kit-projeto-ia/</p>
+  <p class="small">Transparência: este kit foi preparado com apoio de IA generativa e revisto pelo autor, que é responsável pelo conteúdo. Apoia a literacia em IA prevista no artigo 4.º do Regulamento (UE) 2024/1689; não é aconselhamento jurídico. Os nomes de programas de financiamento são exemplos: confirme sempre a informação na fonte oficial.</p>
+
+  <div class="contact">
+    <img src="cel-logo-branco-horizontal.svg" alt="Ciência e Letras">
+    <p><strong>Ciência e Letras — Formação Especializada, Lda.</strong><br>
+    UPTEC Asprela I, Rua Alfredo Allen, 455/461, 4200-135 Porto<br>
+    tel. 963 817 407 · www.ciencia-letras.pt · secretaria@ciencia-letras.pt</p>
+  </div>
+</section>
+
+</body>
+</html>

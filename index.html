@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O meu projeto IA em 7 fases · Ciência e Letras</title>
+<meta name="description" content="Uma conversa com um assistente de IA leva uma iniciativa de trabalho da primeira ideia à divulgação, em sete fases. Kit de simulação prática do Ciência e Letras.">
+<script>
+/* ===== CONFIGURAÇÃO / CONFIGURATION =====
+ * endpoint: URL da Web App do Google Apps Script (termina em /exec). Ver SETUP.md.
+ *           Enquanto estiver vazio, o formulário propõe o pedido por email.
+ * email:    endereço para pedidos por email e para exercer os direitos RGPD. */
+window.CONFIG = {
+  endpoint: "",
+  email: "secretaria@ciencia-letras.pt"
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="stylesheet" href="assets/cel/cel-chrome.css">
+<link rel="icon" href="assets/cel/cel-logo-cores-icon.svg" type="image/svg+xml">
+</head>
+<body>
+<header id="cel-header"></header>
+<div class="cel-layout"><div class="cel-main">
+
+<main class="wrap">
+
+  <!-- ============ O QUE É ============ -->
+  <section class="hero">
+    <div class="eyebrow"><span data-l="pt">Kit de simulação prática · IA generativa</span><span data-l="en">Practical simulation kit · Generative AI</span></div>
+    <h1><span data-l="pt">O meu projeto IA em 7 fases</span><span data-l="en">My AI project in 7 phases</span></h1>
+    <p class="lead" data-l="pt">Escolha uma iniciativa para o seu serviço e leve-a, numa só conversa com um assistente de IA, da primeira ideia à divulgação. Em cada fase aplica uma técnica de prompting, produz um documento útil e verifica o que a IA escreveu. O formato foi testado em sala, com profissionais de serviços públicos, antes de ser publicado.</p>
+    <p class="lead" data-l="en">Pick an initiative for your team and take it, in a single conversation with an AI assistant, from first idea to dissemination. In each phase you apply a prompting technique, produce a useful document and check what the AI wrote. The format was tested in class, with public-sector staff, before being published.</p>
+    <div class="cta">
+      <a class="pill orange" href="#inicio"><span data-l="pt">Começar pela fase 1</span><span data-l="en">Start with phase 1</span></a>
+      <a class="pill navy" href="#pedir"><span data-l="pt">Receber o kit completo</span><span data-l="en">Get the full kit</span></a>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section class="block" id="como">
+    <h2 class="sec"><span data-l="pt">Como funciona</span><span data-l="en">How it works</span></h2>
+    <div class="how">
+      <div class="feat"><h3><span data-l="pt">Uma conversa</span><span data-l="en">One conversation</span></h3>
+        <p data-l="pt">Abra uma conversa nova e cole o prompt inicial. Em cada fase, cole o prompt seguinte na mesma conversa: a IA guarda o contexto.</p>
+        <p data-l="en">Open a new chat and paste the starting prompt. In each phase, paste the next prompt into the same chat: the AI keeps the context.</p></div>
+      <div class="feat"><h3><span data-l="pt">Um projeto</span><span data-l="en">One project</span></h3>
+        <p data-l="pt">Real ou inventado, do seu serviço. Preencha os [ ] como quiser. No fim de cada fase, peça o cartão do projeto e guarde-o.</p>
+        <p data-l="en">Real or invented, from your own team. Fill in the [ ] as you like. At the end of each phase, ask for the project card and keep it.</p></div>
+      <div class="feat"><h3><span data-l="pt">Sete fases</span><span data-l="en">Seven phases</span></h3>
+        <p data-l="pt">Ideia, autorizações, orçamento, financiamento, dados, relatório e divulgação. Cada fase tem teoria curta, prompt, iteração e checklist.</p>
+        <p data-l="en">Idea, approvals, budget, funding, data, report and dissemination. Each phase has short theory, a prompt, an iteration and a checklist.</p></div>
+    </div>
+    <div class="note" data-l="pt"><strong>Que ferramenta?</strong> A que a sua organização autoriza: Microsoft 365 Copilot Chat com proteção de dados empresarial, ChatGPT, Gemini ou Claude. O exercício é o mesmo. <strong>Sem dados pessoais reais</strong>, em nenhuma fase.</div>
+    <div class="note" data-l="en"><strong>Which tool?</strong> Whichever your organisation allows: Microsoft 365 Copilot Chat with enterprise data protection, ChatGPT, Gemini or Claude. The exercise is the same. <strong>No real personal data</strong>, in any phase.</div>
+  </section>
+
+  <!-- ============ PROMPT INICIAL + CARTÃO ============ -->
+  <section class="block" id="inicio">
+    <h2 class="sec"><span data-l="pt">Para começar</span><span data-l="en">Getting started</span></h2>
+    <p class="sub" data-l="pt">O prompt inicial separa o contexto (1.º parágrafo), o papel (2.º) e a expectativa (as regras). No fim, a IA pergunta antes de produzir.</p>
+    <p class="sub" data-l="en">The starting prompt separates context (1st paragraph), role (2nd) and expectations (the rules). At the end, the AI asks before it writes.</p>
+
+    <div class="prompt" data-l="pt">
+      <div class="prompt-head"><span class="lbl">Prompt inicial · cole numa conversa nova</span><button class="copy" type="button" data-copy="p-start-pt">Copiar</button></div>
+<pre id="p-start-pt">Quero propor uma nova iniciativa no meu [serviço / departamento / unidade] da [organização], em torno de [atendimento ao público / gestão documental / tratamento de reclamações / formação interna / ...].
+A minha função atual é [técnico superior / assistente técnico / dirigente / docente / ...].
+Atua como especialista na implementação deste tipo de iniciativas em [setor: administração pública / ensino superior / empresa / IPSS] em Portugal.
+Vou produzir vários documentos e recursos de forma faseada. Eu digo-te qual é a fase seguinte.
+Regras para toda a conversa:
+- português europeu, tom institucional, respostas concisas;
+- não inventes regulamentos, nomes, valores ou programas: assinala [a confirmar];
+- não uses dados pessoais reais.
+Antes de começarmos, faz-me até 5 perguntas para perceberes o contexto. Uma de cada vez.</pre>
+    </div>
+    <div class="prompt" data-l="en">
+      <div class="prompt-head"><span class="lbl">Starting prompt · paste into a new chat</span><button class="copy" type="button" data-copy="p-start-en">Copy</button></div>
+<pre id="p-start-en">I want to propose a new initiative in my [team / department / unit] at [organisation], around [public service desk / document management / complaints handling / internal training / ...].
+My current role is [officer / administrative assistant / manager / lecturer / ...].
+Act as an expert in implementing this kind of initiative in [sector: public administration / higher education / company / non-profit].
+I will produce several documents and resources in phases. I will tell you which phase comes next.
+Rules for the whole conversation:
+- [English / European Portuguese], institutional tone, concise answers;
+- do not invent regulations, names, amounts or programmes: mark them [to confirm];
+- do not use real personal data.
+Before we start, ask me up to 5 questions to understand the context. One at a time.</pre>
+    </div>
+
+    <div class="prompt" data-l="pt">
+      <div class="prompt-head"><span class="lbl">No fim de cada fase · cartão do projeto</span><button class="copy" type="button" data-copy="p-card-pt">Copiar</button></div>
+<pre id="p-card-pt">Atualiza o CARTÃO DO PROJETO (máximo 150 palavras):
+título · objetivo · unidade e função · decisões tomadas · números-chave · próximos passos · pendentes [a confirmar].</pre>
+      <p class="hint">Copie o cartão para um documento seu. Leva o essencial, sem o ruído da conversa.</p>
+    </div>
+    <div class="prompt" data-l="en">
+      <div class="prompt-head"><span class="lbl">At the end of each phase · project card</span><button class="copy" type="button" data-copy="p-card-en">Copy</button></div>
+<pre id="p-card-en">Update the PROJECT CARD (150 words maximum):
+title · goal · unit and role · decisions made · key figures · next steps · open items [to confirm].</pre>
+      <p class="hint">Copy the card into a document of your own. It carries what matters, without the noise of the chat.</p>
+    </div>
+
+    <div class="prompt" data-l="pt">
+      <div class="prompt-head"><span class="lbl">Se precisar de recomeçar num chat novo</span><button class="copy" type="button" data-copy="p-restart-pt">Copiar</button></div>
+<pre id="p-restart-pt">Estou a trabalhar numa iniciativa e vou colar o cartão do projeto.
+Lê-o e confirma em 3 linhas o que percebeste. Depois aguarda a fase seguinte.
+Mantém as regras: PT-PT, tom institucional, não inventar, assinalar [a confirmar].
+[cola aqui o cartão]</pre>
+      <p class="hint">Se a conversa ficar lenta ou atingir o limite. Gerir o contexto também é uma técnica.</p>
+    </div>
+    <div class="prompt" data-l="en">
+      <div class="prompt-head"><span class="lbl">If you need to restart in a new chat</span><button class="copy" type="button" data-copy="p-restart-en">Copy</button></div>
+<pre id="p-restart-en">I am working on an initiative and will paste the project card.
+Read it and confirm in 3 lines what you understood. Then wait for the next phase.
+Keep the rules: institutional tone, do not invent, mark [to confirm].
+[paste the card here]</pre>
+      <p class="hint">If the chat gets slow or hits its limit. Managing context is a technique too.</p>
+    </div>
+  </section>
+
+  <!-- ============ FASE 1 ============ -->
+  <section class="block" id="fase1">
+    <article class="phase">
+      <div class="ph-top"><div class="ph-num">1</div><div>
+        <div class="ph-tech"><span data-l="pt">Escolha múltipla + iteração</span><span data-l="en">Multiple choice + iteration</span></div>
+        <h3><span data-l="pt">Ideação do projeto</span><span data-l="en">Shaping the idea</span></h3></div></div>
+      <p data-l="pt">Pedir opções em vez de uma resposta única evita ficar preso à primeira ideia. Depois, itera-se.</p>
+      <p data-l="en">Asking for options instead of a single answer keeps you from getting stuck on the first idea. Then you iterate.</p>
+      <ul class="ideas" data-l="pt">
+        <li>Peça 3 opções contrastantes e não deixe a IA escolher por si.</li>
+        <li>Escolha uma e refine-a com uma instrução concreta («só muda X»).</li>
+        <li>Feche com um objetivo verificável: o que muda, para quem, até quando.</li>
+      </ul>
+      <ul class="ideas" data-l="en">
+        <li>Ask for 3 contrasting options and don't let the AI choose for you.</li>
+        <li>Pick one and refine it with a concrete instruction ("only change X").</li>
+        <li>Close with a verifiable goal: what changes, for whom, by when.</li>
+      </ul>
+
+      <div class="prompt" data-l="pt">
+        <div class="prompt-head"><span class="lbl">Fase 1 · prompt</span><button class="copy" type="button" data-copy="p-f1-pt">Copiar</button></div>
+<pre id="p-f1-pt">FASE 1 · IDEAÇÃO
+Apresenta-me 3 ideias diferentes para esta iniciativa:
+A. ambiciosa; B. de baixo custo; C. testável num mês.
+Para cada uma: nome curto · problema que resolve · como funciona (3 frases) · quem beneficia · principal risco.
+Não escolhas por mim.</pre>
+      </div>
+      <div class="prompt" data-l="en">
+        <div class="prompt-head"><span class="lbl">Phase 1 · prompt</span><button class="copy" type="button" data-copy="p-f1-en">Copy</button></div>
+<pre id="p-f1-en">PHASE 1 · IDEAS
+Give me 3 different ideas for this initiative:
+A. ambitious; B. low cost; C. testable within a month.
+For each: short name · problem it solves · how it works (3 sentences) · who benefits · main risk.
+Do not choose for me.</pre>
+      </div>
+
+      <div class="prompt" data-l="pt">
+        <div class="prompt-head"><span class="lbl">Depois · itere</span><button class="copy" type="button" data-copy="p-f1i-pt">Copiar</button></div>
+<pre id="p-f1i-pt">Escolho a [A/B/C]. Ajusta-a a esta restrição: [ex.: sem orçamento novo / só 2 pessoas].
+Formula: título institucional · objetivo numa frase (o que muda, para quem, até quando) · 3 benefícios mensuráveis.</pre>
+      </div>
+      <div class="prompt" data-l="en">
+        <div class="prompt-head"><span class="lbl">Then · iterate</span><button class="copy" type="button" data-copy="p-f1i-en">Copy</button></div>
+<pre id="p-f1i-en">I choose [A/B/C]. Adjust it to this constraint: [e.g. no new budget / only 2 people].
+Write: institutional title · goal in one sentence (what changes, for whom, by when) · 3 measurable benefits.</pre>
+      </div>
+
+      <div class="check" data-l="pt"><h4>Verifique antes de avançar</h4><ul>
+        <li>As 3 ideias são mesmo diferentes entre si?</li>
+        <li>O objetivo é verificável (tem número e prazo)?</li>
+        <li>A IA inventou algum serviço, programa ou regulamento da sua organização?</li>
+        <li>No fim: peça o cartão do projeto.</li></ul></div>
+      <div class="check" data-l="en"><h4>Check before moving on</h4><ul>
+        <li>Are the 3 ideas really different from each other?</li>
+        <li>Is the goal verifiable (does it have a number and a deadline)?</li>
+        <li>Did the AI invent a service, programme or regulation of your organisation?</li>
+        <li>At the end: ask for the project card.</li></ul></div>
+    </article>
+  </section>
+
+  <!-- ============ FASES 2–7 ============ -->
+  <section class="block" id="fases">
+    <h2 class="sec"><span data-l="pt">As fases seguintes</span><span data-l="en">The next phases</span></h2>
+    <p class="sub" data-l="pt">Os prompts, as iterações e as checklists das fases 2 a 7, e o prompt final que transforma a conversa num assistente reutilizável, estão no kit completo em PDF.</p>
+    <p class="sub" data-l="en">The prompts, iterations and checklists for phases 2 to 7, and the closing prompt that turns the chat into a reusable assistant, are in the full PDF kit.</p>
+    <div class="phases">
+      <div class="pcard"><div class="ph-num">2</div><div class="ph-tech"><span data-l="pt">Persona-audiência</span><span data-l="en">Audience persona</span></div>
+        <h3><span data-l="pt">Pedidos de autorização</span><span data-l="en">Approval requests</span></h3>
+        <p data-l="pt">Três pedidos para a chefia, o encarregado de proteção de dados e a ética, e a resposta ao email de uma chefia com dúvidas.</p>
+        <p data-l="en">Three requests, to your manager, the data protection officer and the ethics body, and a reply to a manager's email full of doubts.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+      <div class="pcard"><div class="ph-num">3</div><div class="ph-tech"><span data-l="pt">Passo a passo + tabelas</span><span data-l="en">Step by step + tables</span></div>
+        <h3><span data-l="pt">SWOT, recursos, orçamento e calendário</span><span data-l="en">SWOT, resources, budget and timeline</span></h3>
+        <p data-l="pt">Análise em tabelas, orçamento com as contas verificadas e um cenário com menos 30% de verba.</p>
+        <p data-l="en">Analysis in tables, a budget with checked sums and a scenario with 30% less money.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+      <div class="pcard alert"><div class="ph-num">4</div><div class="ph-tech"><span data-l="pt">Pesquisa web + verificação de fontes</span><span data-l="en">Web search + source checking</span></div>
+        <h3><span data-l="pt">Financiamento</span><span data-l="en">Funding</span></h3>
+        <p data-l="pt">Tabela de fontes de financiamento com link oficial e resumo da candidatura. É a fase em que a IA mais inventa: não lhe pergunte se tem a certeza, abra a fonte.</p>
+        <p data-l="en">A table of funding sources with official links and an application summary. This is where the AI invents the most: don't ask it whether it's sure, open the source.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+      <div class="pcard"><div class="ph-num">5</div><div class="ph-tech"><span data-l="pt">Few-shot (exemplos)</span><span data-l="en">Few-shot (examples)</span></div>
+        <h3><span data-l="pt">Dados fictícios</span><span data-l="en">Fictitious data</span></h3>
+        <p data-l="pt">Seis meses de dados simulados do piloto, em CSV pronto a abrir no Excel.</p>
+        <p data-l="en">Six months of simulated pilot data, as a CSV ready to open in Excel.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+      <div class="pcard"><div class="ph-num">6</div><div class="ph-tech"><span data-l="pt">Análise de ficheiros com código</span><span data-l="en">File analysis with code</span></div>
+        <h3><span data-l="pt">Relatório de acompanhamento (opcional)</span><span data-l="en">Progress report (optional)</span></h3>
+        <p data-l="pt">Indicadores calculados com código, um gráfico e um relatório em versão de uma página e de meia página.</p>
+        <p data-l="en">Indicators computed with code, a chart and a report in a one-page and a half-page version.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+      <div class="pcard"><div class="ph-num">7</div><div class="ph-tech"><span data-l="pt">Persona-audiência + formatos</span><span data-l="en">Audience persona + formats</span></div>
+        <h3><span data-l="pt">Divulgação</span><span data-l="en">Dissemination</span></h3>
+        <p data-l="pt">Notícia, post, email aos colegas e guião de slides, e a tradução da notícia para inglês.</p>
+        <p data-l="en">A news item, a post, an email to colleagues and a slide outline, plus a translation of the news item.</p>
+        <span class="lock"><span data-l="pt">No kit completo</span><span data-l="en">In the full kit</span></span></div>
+    </div>
+  </section>
+
+  <!-- ============ FORMULÁRIO ============ -->
+  <section class="block" id="pedir">
+    <h2 class="sec"><span data-l="pt">Receber o kit completo</span><span data-l="en">Get the full kit</span></h2>
+    <p class="sub" data-l="pt">Enviamos por email o PDF com as sete fases, as checklists e o prompt final. É gratuito.</p>
+    <p class="sub" data-l="en">We email you the PDF with all seven phases, the checklists and the closing prompt. It is free. (The kit is in Portuguese.)</p>
+
+    <form class="kit" id="kit-form" novalidate>
+      <div class="fld"><label for="f-nome"><span data-l="pt">Nome</span><span data-l="en">Name</span></label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="120"></div>
+      <div class="fld"><label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+      <div class="fld"><label for="f-org"><span data-l="pt">Organização</span><span data-l="en">Organisation</span> <span class="opt"><span data-l="pt">(opcional)</span><span data-l="en">(optional)</span></span></label>
+        <input id="f-org" name="organizacao" type="text" autocomplete="organization" maxlength="160"></div>
+      <div class="fld"><label for="f-uso"><span data-l="pt">Para que vai usar</span><span data-l="en">What will you use it for</span></label>
+        <select id="f-uso" name="uso" required>
+          <option value="" data-pt="Escolha uma opção" data-en="Choose an option"></option>
+          <option value="formacao-interna" data-pt="Formação interna" data-en="In-house training"></option>
+          <option value="uso-pessoal" data-pt="Uso pessoal" data-en="Personal use"></option>
+          <option value="docencia" data-pt="Docência" data-en="Teaching"></option>
+          <option value="outro" data-pt="Outro" data-en="Other"></option>
+        </select></div>
+      <div class="hp" aria-hidden="true"><label for="f-site">Website</label><input id="f-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <label class="consent full"><input id="f-consent" name="consentimento" type="checkbox" required>
+        <span data-l="pt">Aceito que o Ciência e Letras trate estes dados para me enviar o kit por email, com informação sobre os seus cursos de IA.</span>
+        <span data-l="en">I agree that Ciência e Letras may process this data to email me the kit, together with information about its AI courses.</span></label>
+      <p class="rgpd full" data-l="pt"><strong>Proteção de dados.</strong> Responsável pelo tratamento: Ciência e Letras — Formação Especializada, Lda., UPTEC Asprela I, Rua Alfredo Allen, 455/461, 4200-135 Porto. Fundamento: o seu consentimento, que pode retirar a qualquer momento. Os dados ficam numa folha de cálculo do CeL, não são cedidos a terceiros e são apagados a seu pedido ou ao fim de 2 anos. Para aceder, corrigir ou apagar os seus dados, escreva para <a href="mailto:secretaria@ciencia-letras.pt">secretaria@ciencia-letras.pt</a>.</p>
+      <p class="rgpd full" data-l="en"><strong>Data protection.</strong> Controller: Ciência e Letras — Formação Especializada, Lda., UPTEC Asprela I, Rua Alfredo Allen, 455/461, 4200-135 Porto, Portugal. Legal basis: your consent, which you may withdraw at any time. The data is kept in a CeL spreadsheet, is not shared with third parties and is deleted on request or after 2 years. To access, correct or delete your data, write to <a href="mailto:secretaria@ciencia-letras.pt">secretaria@ciencia-letras.pt</a>.</p>
+      <div class="full status" id="f-status" role="status" aria-live="polite"></div>
+      <div class="full"><button class="pill orange" id="f-submit" type="submit"><span data-l="pt">Enviar-me o kit</span><span data-l="en">Send me the kit</span></button></div>
+    </form>
+  </section>
+
+  <!-- ============ CURSOS ============ -->
+  <section class="block" id="cursos">
+    <h2 class="sec"><span data-l="pt">Onde se aprende isto</span><span data-l="en">Where you learn this</span></h2>
+    <p class="sub" data-l="pt">As técnicas do kit são trabalhadas, com prática acompanhada, nos cursos de IA generativa do Ciência e Letras, entidade formadora certificada pela DGERT.</p>
+    <p class="sub" data-l="en">The kit's techniques are practised, with guidance, in the Ciência e Letras generative AI courses. Ciência e Letras is a DGERT-certified training provider.</p>
+    <div class="courses">
+      <div class="course"><div class="tagl"><span data-l="pt">Curso</span><span data-l="en">Course</span></div>
+        <h3><span data-l="pt">Iniciação ao ChatGPT e IA</span><span data-l="en">Getting Started with ChatGPT and AI</span></h3>
+        <p data-l="pt">Para quem começa: prompts bem estruturados, verificação de respostas e uso responsável no trabalho.</p>
+        <p data-l="en">For beginners: well-structured prompts, checking answers and responsible use at work.</p>
+        <a class="more" href="https://www.ciencia-letras.pt/cursos/iniciacao-chatgpt-ia/" target="_blank" rel="noopener"><span data-l="pt">Ver o curso</span><span data-l="en">See the course</span></a></div>
+      <div class="course"><div class="tagl"><span data-l="pt">Curso</span><span data-l="en">Course</span></div>
+        <h3><span data-l="pt">GenAI para Informáticos</span><span data-l="en">GenAI for IT Professionals</span></h3>
+        <p data-l="pt">Para equipas técnicas: assistentes, automação, análise de dados e integração da IA nos sistemas.</p>
+        <p data-l="en">For technical teams: assistants, automation, data analysis and integrating AI into systems.</p>
+        <a class="more" href="https://www.ciencia-letras.pt/cursos/genai-para-informaticos/" target="_blank" rel="noopener"><span data-l="pt">Ver o curso</span><span data-l="en">See the course</span></a></div>
+      <div class="course"><div class="tagl"><span data-l="pt">Para equipas</span><span data-l="en">For teams</span></div>
+        <h3><span data-l="pt">Workshop ou diagnóstico</span><span data-l="en">Workshop or assessment</span></h3>
+        <p data-l="pt">Esta simulação, adaptada aos projetos do seu serviço, numa manhã. Ou um diagnóstico das necessidades de literacia em IA da equipa.</p>
+        <p data-l="en">This simulation, adapted to your team's projects, in one morning. Or an assessment of your team's AI literacy needs.</p>
+        <a class="more" href="mailto:secretaria@ciencia-letras.pt?subject=Workshop%20%C2%ABO%20meu%20projeto%20IA%20em%207%20fases%C2%BB"><span data-l="pt">Falar com o CeL</span><span data-l="en">Contact CeL</span></a></div>
+    </div>
+  </section>
+
+  <!-- ============ TRANSPARÊNCIA E LICENÇA ============ -->
+  <section class="block" id="transparencia">
+    <h2 class="sec"><span data-l="pt">Transparência e licença</span><span data-l="en">Transparency and licence</span></h2>
+    <p data-l="pt">Este kit foi preparado com apoio de IA generativa e revisto pelo autor, Ricardo Correia, que é responsável pelo conteúdo. Os textos e os prompts estão sob a licença <a href="https://creativecommons.org/licenses/by/4.0/deed.pt" target="_blank" rel="noopener">CC BY 4.0</a>: pode usá-los e adaptá-los, incluindo em formação, desde que cite a fonte (ver o painel «Como citar»). O código da página está sob a licença MIT.</p>
+    <p data-l="en">This kit was prepared with the help of generative AI and reviewed by its author, Ricardo Correia, who is responsible for the content. The texts and prompts are licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>: you may use and adapt them, including in training, as long as you cite the source (see the "How to cite" panel). The page code is licensed under MIT.</p>
+    <p class="small" data-l="pt">O kit apoia a literacia em IA prevista no artigo 4.º do Regulamento (UE) 2024/1689 (Regulamento da IA). Não é aconselhamento jurídico.</p>
+    <p class="small" data-l="en">The kit supports the AI literacy called for in Article 4 of Regulation (EU) 2024/1689 (AI Act). It is not legal advice.</p>
+  </section>
+
+  <footer class="site">
+    <p>© 2026 Ciência e Letras — Formação Especializada, Lda. · <a href="mailto:secretaria@ciencia-letras.pt">secretaria@ciencia-letras.pt</a> · <a href="https://www.ciencia-letras.pt" target="_blank" rel="noopener">www.ciencia-letras.pt</a></p>
+  </footer>
+</main>
+
+</div><aside id="cel-aside"></aside></div>
+
+<script src="assets/cel/tool.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/kit.js"></script>
+<script src="assets/cel/cel-chrome.js"></script>
+</body>
+</html>
