@@ -1,7 +1,7 @@
 # My AI project in 7 phases
 
 <!-- cel:badge -->
-DOI: pending (Zenodo) · em preparação
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24243385.svg)](https://doi.org/10.5281/zenodo.24243385)
 <!-- /cel:badge -->
 
 **[English](#english)** · **[Português](#português)**
@@ -40,9 +40,9 @@ The prompts are a teaching exercise, not legal or funding advice. Funding progra
 
 Any institution may use, adapt and share this tool, including in teaching and training, **as long as it cites it**. Code: MIT ([LICENSE](LICENSE)). Content: CC BY 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)).
 
-> Correia, R. (2026). *My AI project in 7 phases: a practical simulation kit for generative AI* (Version 1.0.0) [Computer software]. Ciência e Letras. https://ciencia-letras.github.io/kit-projeto-ia/
+> Correia, R. (2026). *My AI project in 7 phases: a practical simulation kit for generative AI* (Version 1.0.0) [Computer software]. Ciência e Letras. https://doi.org/10.5281/zenodo.24243385
 
-A Zenodo DOI will be added after the first release.
+Archived on Zenodo: version DOI [10.5281/zenodo.24243385](https://doi.org/10.5281/zenodo.24243385), all versions [10.5281/zenodo.24243384](https://doi.org/10.5281/zenodo.24243384), in the [Ciência e Letras community](https://zenodo.org/communities/ciencia-letras).
 
 GitHub's “Cite this repository” button (from [CITATION.cff](CITATION.cff)) gives APA and BibTeX.
 <!-- /cel:cite:en -->
@@ -79,9 +79,9 @@ Os prompts são um exercício de formação, não aconselhamento jurídico nem s
 
 Qualquer instituição pode usar, adaptar e partilhar esta ferramenta, incluindo em ensino e formação, **desde que a cite**. Código: MIT ([LICENSE](LICENSE)). Conteúdos: CC BY 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)).
 
-> Correia, R. (2026). *My AI project in 7 phases: a practical simulation kit for generative AI* (Version 1.0.0) [Computer software]. Ciência e Letras. https://ciencia-letras.github.io/kit-projeto-ia/
+> Correia, R. (2026). *My AI project in 7 phases: a practical simulation kit for generative AI* (Version 1.0.0) [Computer software]. Ciência e Letras. https://doi.org/10.5281/zenodo.24243385
 
-O DOI do Zenodo será acrescentado depois da primeira versão publicada.
+Arquivado no Zenodo: DOI desta versão [10.5281/zenodo.24243385](https://doi.org/10.5281/zenodo.24243385), de todas as versões [10.5281/zenodo.24243384](https://doi.org/10.5281/zenodo.24243384), na [comunidade Ciência e Letras](https://zenodo.org/communities/ciencia-letras).
 
 O botão “Cite this repository” do GitHub (a partir de [CITATION.cff](CITATION.cff)) dá APA e BibTeX.
 <!-- /cel:cite:pt -->

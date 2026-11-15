@@ -26,8 +26,8 @@ window.CEL_TOOL = {
   "place": "Porto",
   "url": "https://ciencia-letras.github.io/kit-projeto-ia/",
   "repo": "https://github.com/ciencia-letras/kit-projeto-ia",
-  "doi": null,
-  "conceptDoi": null,
+  "doi": "10.5281/zenodo.24243385",
+  "conceptDoi": "10.5281/zenodo.24243384",
   "lab": {
     "en": "https://ciencia-letras.github.io/#resources",
     "pt": "https://ciencia-letras.github.io/pt/#resources"

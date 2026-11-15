@@ -11,7 +11,15 @@ authors:
     affiliation: "Ciência e Letras — Formação Especializada, Lda."
 version: "1.0.0"
 date-released: 2026-11-12
+doi: 10.5281/zenodo.24243385
 url: "https://ciencia-letras.github.io/kit-projeto-ia/"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24243385
+    description: "This version (v1.0.0)"
+  - type: doi
+    value: 10.5281/zenodo.24243384
+    description: "All versions"
 repository-code: "https://github.com/ciencia-letras/kit-projeto-ia"
 license:
   - MIT
